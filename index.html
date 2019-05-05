@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <!--
     Theme Name: Weinxor
     Author: Anna Danilova
@@ -61,8 +61,7 @@
             <div class="bounce3"></div>
         </div>
     </div>
-
- <!-- END PRELOADER -->
+    <!-- END PRELOADER -->
 
  <!-- =========================
      START ABOUT US SECTION
@@ -738,6 +737,45 @@
         </div>
     </section>
     <!-- ENS lab -->
+
+<!-- =========================
+         Start FifthLab SECTION
+============================== -->
+    <section class="apps_screen page" id="LAB5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1 wow fadeInBig" data-wow-duration="1s">
+                    <!-- APPS SCREEN TITLE -->
+                    <div class="section_title">
+                        <h2>ЛАБОРАТОРНАЯ РАБОТА №5</h2>
+                        <p>Markdown Editor<br/>
+                            Markdown (маркдаун) — облегчённый язык разметки, созданный с целью написания максимально читаемого и удобного для правки текста, но пригодного для преобразования в языки для продвинутых публикаций (https://ru.wikipedia.org/wiki/Markdown). Также, md вовсю используется для описания репозиториев кода, и его понимают чаты типа slack.</p>
+                    </div>
+                    <!-- END APPS SCREEN TITLE -->
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <textarea id="editor" class="form-control" id="markdown" rows="25" cols="10" placeholder="Текст Сообщения..."></textarea>
+                </div>
+            </div>
+        </div>
+
+        <link rel="stylesheet" href="http://lab.lepture.com/editor/editor.css" />
+        <script type="text/javascript" src="http://lab.lepture.com/editor/editor.js"></script>
+        <script type="text/javascript" src="http://lab.lepture.com/editor/marked.js"></script>
+        <script>
+            var editor = new Editor({
+                element: document.getElementById('editor')
+            })
+            editor.render();
+        </script>
+
+
+    </section>
+
 
 <!-- =========================
      FOOTER 
