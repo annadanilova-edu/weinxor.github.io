@@ -798,7 +798,7 @@
                 element: document.getElementById('editor')
             });
             editor.render();
-            editor.value("#Заголовок\n\r##Еще один\n\r###Еще меньше\n\r**Жирный текст**\n\r*Курсив*\n\r~~Зачеркнутый текст~~\n\r> Это\n\r> красивая\n\r> цитата\n\r[Это ссылка](https://weinxor.github.io)");
+            editor.value("# Заголовок\n\r## Еще один\n\r### Еще меньше\n\r**Жирный текст**\n\r*Курсив*\n\r~~Зачеркнутый текст~~\n\r> Это\n\r> красивая\n\r> цитата\n\r[Это ссылка](https://weinxor.github.io)");
 
             // Custom Css
             var padding = document.getElementById('delPadding');
@@ -813,7 +813,7 @@
             new Vue({
                 el: '#editorVue',
                 data: {
-                    input: '# hello'
+                    input: '# Заголовок\n\r## Еще один\n\r### Еще меньше\n\r**Жирный текст**\n\r*Курсив*\n\r~~Зачеркнутый~~\n\r> Это\n\r> красивая\n\r> цитата\n\r[Это ссылка](https://weinxor.github.io)'
                 },
                 computed: {
                     compiledMarkdown: function () {
