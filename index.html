@@ -4,7 +4,7 @@
     Theme Name: Weinxor
     Author: Anna Danilova
     Version: 1.0
-    Based on desing - 'https://designseer.com/'
+    Based on design - 'https://designseer.com/'
 	Free for personal and commercial use under GNU GPL 3.0 license.
 -->
 
@@ -24,6 +24,8 @@
     <link href="css/owl.carousel.css" rel="stylesheet">
     <link href="css/owl.theme.css" rel="stylesheet">
 
+    <!-- Lepture Editor -->
+    <link rel="stylesheet" href="http://lab.lepture.com/editor/editor.css" />
 
     <!-- Pixeden Icon Font -->
     <link rel="stylesheet" href="css/Pe-icon-7-stroke.css">
@@ -47,9 +49,13 @@
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-	  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-	  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 	<![endif]-->
+
+    <!-- CRITICAL SCRIPTS -->
+    <script type="text/javascript" src="js/editor.js"></script>
+    <script type="text/javascript" src="js/marked.js"></script>
 </head>
 
 <body>
@@ -640,14 +646,23 @@
                 <div class="col-md-10 col-md-offset-1 wow fadeInBig" data-wow-duration="1s">
                     <!-- APPS SCREEN TITLE -->
                     <div class="section_title">
-                        <h2>ЛАБОРАТОРНАЯ РАБОТА №3</h2>
-                        <p>Генератор контента<br/>
-                            Требуется генерировать коллажи изображений с цитатами с помощью элемента canvas с возможностью сохранения контента на чистом javascript (без html и css).</p>
-                    </div>
+                    <h2>ЛАБОРАТОРНАЯ РАБОТА №3</h2>
+                    <p>Генератор контента<br/>
+                        Требуется генерировать коллажи изображений с цитатами с помощью элемента canvas с возможностью сохранения контента на чистом javascript (без html и css).</p>
+                </div>
                     <!-- END APPS SCREEN TITLE -->
+                </div>
+                <div id="forCanvas" class="col-md-12 hidden-xs hidden-sm hidden-md wow bounceInRight" data-wow-duration="1s">
+                    <script src="js/gen.js"></script>
+                </div>
+                <div class="section_title hidden-lg">
+                    <h2>НЕДОСТУПНО НА МОБИЛЬНЫХ УСТРОЙСТВАХ</h2>
+                    <p>Генератор контента<br/>
+                        Генератор будет работать только с разрешением более 1170px</p>
                 </div>
             </div>
         </div>
+        <br/>
         <!-- =========================
      START CALL TO ACTION
 ============================== -->
@@ -746,7 +761,7 @@
             <div class="row">
                 <div class="col-md-10 col-md-offset-1 wow fadeInBig" data-wow-duration="1s">
                     <!-- APPS SCREEN TITLE -->
-                    <div class="section_title">
+                    <div class="section_title" id="delBottomPadding">
                         <h2>ЛАБОРАТОРНАЯ РАБОТА №5</h2>
                         <p>Markdown Editor<br/>
                             Markdown (маркдаун) — облегчённый язык разметки, созданный с целью написания максимально читаемого и удобного для правки текста, но пригодного для преобразования в языки для продвинутых публикаций (https://ru.wikipedia.org/wiki/Markdown). Также, md вовсю используется для описания репозиториев кода, и его понимают чаты типа slack.</p>
@@ -757,24 +772,37 @@
         </div>
         <div class="container">
             <div class="row">
-                <div class="col-md-12">
-                    <textarea id="editor" class="form-control" id="markdown" rows="25" cols="10" placeholder="Текст Сообщения..."></textarea>
+                <div id="delPadding" class="section_title">
+                    <p>Реализация с использованием lepture markdown editor</p>
+                </div>
+                <div class="col-md-12 wow bounceInRight" data-wow-duration="1s">
+                    <textarea id="editor" class="form-control" rows="25" cols="10"></textarea>
+                </div>
+                <hr/>
+                <div class="section_title">
+                    <p>Реализация на Vue.js</p>
+                </div>
+                <div class="col-md-12 wow bounceInLeft" data-wow-duration="1s">
+
                 </div>
             </div>
         </div>
-
-        <link rel="stylesheet" href="http://lab.lepture.com/editor/editor.css" />
-        <script type="text/javascript" src="js/editor.js"></script>
-        <script type="text/javascript" src="js/marked.js"></script>
         <script>
+            // Editor construct
             var editor = new Editor({
                 element: document.getElementById('editor')
-            })
+            });
             editor.render();
+            editor.value("#Заголовок\n\r##Еще один\n\r###Еще меньше\n\r**Жирный текст**\n\r*Курсив*\n\r~~Зачеркнутый текст~~\n\r> Это\n\r> красивая\n\r> цитата\n\r[Это ссылка](https://weinxor.github.io)");
+
+            // Custom Css
+            var padding = document.getElementById('delPadding');
+            padding.style.paddingTop = '0px';
+            padding.style.paddingBottom = '0px';
+            var paddingBottom = document.getElementById('delBottomPadding');
+            paddingBottom.style.paddingBottom = '0px';
+            window.location.hash="HOME";
         </script>
-        <!-- TODO: Вывод из MD -->
-
-
     </section>
 
 
@@ -820,7 +848,6 @@
     <script src="js/waypoints.min.js"></script>
     <script src="js/jquery.counterup.min.js"></script>
     <script src="js/script.js"></script>
-
 
 </body>
 </html>
