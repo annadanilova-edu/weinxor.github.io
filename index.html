@@ -4,7 +4,7 @@
     Theme Name: Weinxor
     Author: Anna Danilova
     Version: 1.0
-    Based on design - 'https://designseer.com/'
+    Based on desing - 'https://designseer.com/'
 	Free for personal and commercial use under GNU GPL 3.0 license.
 -->
 
@@ -25,7 +25,7 @@
     <link href="css/owl.theme.css" rel="stylesheet">
 
     <!-- Lepture Editor -->
-    <link rel="stylesheet" href="http://lab.lepture.com/editor/editor.css" />
+    <link rel="stylesheet" href="css/editor.css" />
 
     <!-- Pixeden Icon Font -->
     <link rel="stylesheet" href="css/Pe-icon-7-stroke.css">
@@ -56,6 +56,9 @@
     <!-- CRITICAL SCRIPTS -->
     <script type="text/javascript" src="js/editor.js"></script>
     <script type="text/javascript" src="js/marked.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+    <script src="https://unpkg.com/marked@0.3.6"></script>
+    <script src="https://unpkg.com/lodash@4.16.0"></script>
 </head>
 
 <body>
@@ -670,7 +673,8 @@
             <div class="container">
                 <div class="row wow fadeInLeftBig" data-wow-duration="1s">
                     <div class="col-md-9">
-                        <p>Тут инфа о генераторе контента</p>
+                        <p>Картинка строится каждый раз при построении страницы.<br/>
+                            Хотите новую картинку? Обновите страницу =Р</p>
                     </div>
                     <div class="col-md-3">
                         <a class="btn btn-primary btn-action" href="https://github.com/weinxor/weinxor.github.io" role="button">Download Now</a>
@@ -754,7 +758,7 @@
     <!-- ENS lab -->
 
 <!-- =========================
-         Start FifthLab SECTION
+         Start Fifth Lab SECTION
 ============================== -->
     <section class="apps_screen page" id="LAB5">
         <div class="container">
@@ -782,8 +786,9 @@
                 <div class="section_title">
                     <p>Реализация на Vue.js</p>
                 </div>
-                <div class="col-md-12 wow bounceInLeft" data-wow-duration="1s">
-
+                <div id="editorVue" class="col-md-12 wow bounceInLeft" data-wow-duration="1s">
+                    <textarea :value="input" @input="update" rows="15" ></textarea>
+                    <div v-html="compiledMarkdown"></div>
                 </div>
             </div>
         </div>
@@ -802,6 +807,25 @@
             var paddingBottom = document.getElementById('delBottomPadding');
             paddingBottom.style.paddingBottom = '0px';
             window.location.hash="HOME";
+        </script>
+
+        <script>
+            new Vue({
+                el: '#editorVue',
+                data: {
+                    input: '# hello'
+                },
+                computed: {
+                    compiledMarkdown: function () {
+                        return marked(this.input, { sanitize: true })
+                    }
+                },
+                methods: {
+                    update: _.debounce(function (e) {
+                        this.input = e.target.value
+                    }, 300)
+                }
+            })
         </script>
     </section>
 
